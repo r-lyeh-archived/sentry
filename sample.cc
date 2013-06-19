@@ -1,15 +1,3 @@
-sentry
-======
-
-- Sentry is a lightweight data monitor written in C++11.
-- Sentry is highly customizable.
-- Tiny. One header and one source file.
-- OS dependencies only. No third party dependencies.
-- MIT licensed.
-
-sample
-------
-```c++
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -82,41 +70,3 @@ int main()
     std::this_thread::sleep_for( std::chrono::seconds( 3 ) );
     return 0;
 }
-```
-
-possible output
----------------
-```
-watching orcs:3000
-watching arrows:15000
-	automatic-subsystem@middleearth.com says: nominal
-	automatic-subsystem@middleearth.com says: nominal
-watching orcs:3000
-watching arrows:15000
-	automatic-subsystem@middleearth.com says: nominal
-	automatic-subsystem@middleearth.com says: nominal
-watching orcs:1000
-watching arrows:1500
-	orc1@mordor.com says: we are running out of arrows!
-	orc2@isengard.com says: we are running out of arrows!
-	orc3@mordor.com says: we are running out of arrows!
-	orc1@mordor.com says: we are running out of orcs!
-	orc2@isengard.com says: we are running out of orcs!
-	orc3@mordor.com says: we are running out of orcs!
-watching orcs:50
-watching arrows:150
-	sauron@mordor.com says: no weapons!!
-	saruman@isengard.com says: no weapons!!
-	orc1@mordor.com says: no weapons!!
-	orc2@isengard.com says: no weapons!!
-	orc3@mordor.com says: no weapons!!
-	sauron@mordor.com says: battle is lost!!
-	saruman@isengard.com says: battle is lost!!
-	orc1@mordor.com says: battle is lost!!
-	orc2@isengard.com says: battle is lost!!
-	orc3@mordor.com says: battle is lost!!
-```
-
-special notes
--------------
-- g++ users: both `-std=c++11` and `-lpthread` may be required when compiling `sentry.cpp`
