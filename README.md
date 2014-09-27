@@ -5,7 +5,7 @@ sentry
 - Sentry is highly customizable.
 - Tiny. One header and one source file.
 - OS dependencies only. No third party dependencies.
-- MIT licensed.
+- BOOST licensed.
 
 sample
 ------

@@ -1,4 +1,4 @@
-// Lightweight C++11 data monitor. No dependencies. MIT licensed.
+// Lightweight C++11 data monitor. No dependencies. BOOST licensed.
 // - rlyeh, 2013 ~~ listening to The Devil's Blood / Voodoo Dust.
 
 #pragma once
