@@ -1,4 +1,4 @@
-sentry
+sentry <a href="https://travis-ci.org/r-lyeh/sentry"><img src="https://api.travis-ci.org/r-lyeh/sentry.svg?branch=master" align="right" /></a>
 ======
 
 - Sentry is a lightweight data monitor written in C++11.
