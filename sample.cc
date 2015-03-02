@@ -15,7 +15,6 @@ namespace levels {
 int main()
 {
     // configuration
-
     sentry st;
 
     st.chiefs = {"sauron@mordor.com", "saruman@isengard.com"};
@@ -37,7 +36,8 @@ int main()
             std::cout << '\t' << who << " says: " << failure << std::endl;
     }};
 
-    auto action = []( sentry &st, const std::string &unused ) {
+    // patrol every 2 seconds
+    st.patrol( 2, []( sentry &st, const std::string &issue_type ) {
         std::cout << "watching orcs:" << levels::orcs << std::endl;
         std::cout << "watching arrows:" << levels::arrows << std::endl;
 
@@ -48,10 +48,7 @@ int main()
         /**/ if( levels::orcs  >= 3000 ) st.good("nominal");
         else if( levels::orcs  >=  100 ) st.warn("we are running out of orcs!");
         else                             st.fail("battle is lost!!");
-    };
-
-    // patrol every 2 seconds
-    st.patrol( action, 0, 2 );
+    } );
 
     // queue as many patrols as you like
     // st.patrol( ... );

@@ -1,12 +1,11 @@
 // Lightweight C++11 data monitor. No dependencies. BOOST licensed.
-// - rlyeh, 2013 ~~ listening to The Devil's Blood / Voodoo Dust.
+// - rlyeh, 2013,2014,2015 ~~ listening to The Devil's Blood / Voodoo Dust.
 
 #pragma once
-
 #include <chrono>
 #include <deque>
+#include <functional>
 #include <string>
-#include <thread>
 #include <thread>
 
 class sentry
@@ -14,10 +13,10 @@ class sentry
     public:
 
     // these used to be template arguments before GCC crashed
-    typedef std::string issue_type;
-    typedef std::string receiver_type;
+    using issue_type = std::string;
+    using receiver_type = std::string;
 
-    typedef void (*todo)( sentry &self, const issue_type &fn );
+    using todo = std::function<void( sentry &self, const issue_type &fn )>;
 
     // feel free to submit data to these structs
     std::deque<receiver_type> chiefs;
@@ -29,10 +28,10 @@ class sentry
     std::deque<todo> ongood;
 
     // then command some patrols to do custom work
-    void patrol( todo fn, double initial_delay, double repeat_delay ) {
+    void patrol( double repeat_delay, todo fn ) {
         is_running = true;
         todos.push_back( std::thread( [=]() {
-            sleep( initial_delay, is_running );
+            // sleep( initial_delay, is_running );
             for(;;) {
                 if( !is_running ) return;
                 fn( *this, issue_type() );

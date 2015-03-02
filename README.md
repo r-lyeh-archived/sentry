@@ -1,14 +1,13 @@
-sentry <a href="https://travis-ci.org/r-lyeh/sentry"><img src="https://api.travis-ci.org/r-lyeh/sentry.svg?branch=master" align="right" /></a>
+Sentry <a href="https://travis-ci.org/r-lyeh/sentry"><img src="https://api.travis-ci.org/r-lyeh/sentry.svg?branch=master" align="right" /></a>
 ======
 
-- Sentry is a lightweight data monitor written in C++11.
+- Sentry is a lightweight data monitor (C++11).
 - Sentry is highly customizable.
-- Tiny. One header and one source file.
-- OS dependencies only. No third party dependencies.
-- BOOST licensed.
+- Sentry is tiny, and header-only.
+- Sentry is self-contained. No external dependencies.
+- Sentry is BOOST licensed.
 
-sample
-------
+## Sample
 ```c++
 #include <iostream>
 #include <thread>
@@ -27,7 +26,6 @@ namespace levels {
 int main()
 {
     // configuration
-
     sentry st;
 
     st.chiefs = {"sauron@mordor.com", "saruman@isengard.com"};
@@ -49,7 +47,8 @@ int main()
             std::cout << '\t' << who << " says: " << failure << std::endl;
     }};
 
-    auto action = []( sentry &st, const std::string &unused ) {
+    // patrol every 2 seconds
+    st.patrol( 2, []( sentry &st, const std::string &issue_type ) {
         std::cout << "watching orcs:" << levels::orcs << std::endl;
         std::cout << "watching arrows:" << levels::arrows << std::endl;
 
@@ -60,10 +59,7 @@ int main()
         /**/ if( levels::orcs  >= 3000 ) st.good("nominal");
         else if( levels::orcs  >=  100 ) st.warn("we are running out of orcs!");
         else                             st.fail("battle is lost!!");
-    };
-
-    // patrol every 2 seconds
-    st.patrol( action, 0, 2 );
+    } );
 
     // queue as many patrols as you like
     // st.patrol( ... );
@@ -84,8 +80,7 @@ int main()
 }
 ```
 
-possible output
----------------
+## Possible output
 ```
 watching orcs:3000
 watching arrows:15000
@@ -117,6 +112,5 @@ watching arrows:150
 	orc3@mordor.com says: battle is lost!!
 ```
 
-special notes
--------------
-- g++ users: both `-std=c++11` and `-lpthread` may be required when compiling `sentry.cpp`
+## Notes
+- clang/g++ users: both `-std=c++11` and `-lpthread` may be required when compiling `sentry.cpp`
