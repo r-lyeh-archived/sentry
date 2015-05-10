@@ -5,7 +5,7 @@ Sentry <a href="https://travis-ci.org/r-lyeh/sentry"><img src="https://api.travi
 - Sentry is highly customizable.
 - Sentry is tiny, and header-only.
 - Sentry is self-contained. No external dependencies.
-- Sentry is BOOST licensed.
+- Sentry is zlib/libpng licensed.
 
 ## Sample
 ```c++

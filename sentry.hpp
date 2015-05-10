@@ -1,4 +1,4 @@
-// Lightweight C++11 data monitor. No dependencies. BOOST licensed.
+// Lightweight C++11 data monitor. No dependencies. zlib/libpng licensed.
 // - rlyeh, 2013,2014,2015 ~~ listening to The Devil's Blood / Voodoo Dust.
 
 #pragma once
